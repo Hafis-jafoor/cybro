@@ -70,7 +70,7 @@ class EventBookings(models.Model):
 
     @api.onchange('begin_date', 'state')
     def action_non_date(self):
-        """"state change to expiry after begin"""
+        """"state change to the expiry after begin"""
 
         for record in self:
             if record.begin_date:
