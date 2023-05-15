@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_inherit_view" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.view</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id"
+               ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='discount_sale_order_lines']"
+                   position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="discount_limit ">
+                    <div class="o_setting_left_pane">
+                        <field name="discount_limit"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="discount_limit" string="Discount Limit "/>
+                        <div class="text-muted mb16">
+                            Set Discount Limit
+                        </div>
+                        <div class="content-group" attrs="{'invisible': [('discount_limit', '=', False)]}">
+                            <div class="row mt16">
+                                <label for="discount_money" class="col-lg-4 o_light_label"/>
+                                <field name="discount_money"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

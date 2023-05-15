@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="event_types_Birthday" model="event.types">
+            <field name="name">Birthday</field>
+        </record>
+        <record id="event_types_Wedding" model="event.types">
+            <field name="name">Wedding</field>
+        </record>
+        <record id="event_types_Anniversary" model="event.types">
+            <field name="name">Anniversary</field>
+        </record>
+        <record id="event_types_Inauguration" model="event.types">
+            <field name="name">Inauguration</field>
+        </record>
+        <record id="event_services_Catering" model="event.services">
+            <field name="name">Catering</field>
+        </record>
+        <record id="event_services_Decorations" model="event.services">
+            <field name="name">Decorations</field>
+        </record>
+        <record id="event_services_Escort" model="event.services">
+            <field name="name">Escort</field>
+        </record>
+    </data>
+</odoo>

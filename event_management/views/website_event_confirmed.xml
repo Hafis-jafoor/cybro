@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="website_event_confirmed">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <div class="row">
+                        <div class="col-lg-7 col-xl-6 me-lg-auto">
+                            <span class="d-block fa fa-4x fa-thumbs-up mx-auto rounded-circle bg-primary">
+                            </span>
+                            <h1 class="text-center"><strong>Thank you</strong></h1>
+                            <div class="pb16 pt16 s_hr" data-snippet="s_hr" data-name="Separator">
+                                <hr class="mx-auto border-top w-50 border-dark text-center"></hr>
+                            </div>
+                            <h4 class="text-center">
+                            <span class="fa fa-check-circle"></span><span>"your event booking <b>confirmed"</b></span></h4>
+                            <p class="text-center">We will get back to you shortly.</p>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

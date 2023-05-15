@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="event_services_action" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">event.services</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="event_services_action_view_tree" model="ir.ui.view">
+        <field name="name">event.services.tree</field>
+        <field name="model">event.services</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name"/>
+                <field name="responsible_person_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="event_services_action_view_form" model="ir.ui.view">
+        <field name="name">event.services.form</field>
+        <field name="model">event.services</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group string="Services">
+                        <group>
+                            <field name="name"/>
+                            <field name="responsible_person_id"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <field name="order_line_ids">
+                            <tree editable="bottom">
+                                <field name="name_description"/>
+                                <field name="product_uom_qty"/>
+                                <field name="price_unit"/>
+                                <field name="service_description_subtotal"/>
+                            </tree>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="currency_id" invisible="1"/>
+                            <field name="service_total" widget="monetary"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <menuitem id="main_menu_configuration_services" action="event_services_action" parent="main_menu_configuration">
+    </menuitem>
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_event_management">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                        <h1>
+                            <strong>Event Management</strong>
+                        </h1>
+                        <br></br>
+                        <t t-if="data['event_id']">
+                            <strong>Event Type:</strong>
+                            <span t-esc="data['event_id']"/>
+                            <br></br>
+                            <br></br>
+                        </t>
+                        <t t-if="data['from_date']">
+                            <strong>From Date :</strong>
+                            <span t-esc="data['from_date']"/>
+                            <br></br>
+                            <br></br>
+                        </t>
+                        <t t-if="data['to_date']">
+                            <strong>To Date:</strong>
+                            <span t-esc="data['to_date']"/>
+                            <br></br>
+                            <br></br>
+                        </t>
+                        <t t-if="data['from_date'] == False and data['to_date'] == False">
+                            <strong>Current Date:</strong>
+                            <span t-esc="data['cur_date']"/>
+                        </t>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>sl no</th>
+                                        <th>event name</th>
+                                        <t t-if="data['event_id']">
+                                            <th>event type</th>
+                                        </t>
+                                        <th>Customer name</th>
+                                        <th>event booking date</th>
+                                        <th>status</th>
+                                        <th>total amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="index" t-value="1"/>
+                                    <t t-set="total" t-value="0"/>
+                                    <t t-set="s" t-value="1"/>
+                                    <t t-foreach="data['ids']" t-as="i">
+                                        <t t-if="not s == i['bn']">
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="index"/>
+                                                </td>
+                                                <t t-set="index" t-value="index+1"/>
+                                                <td>
+                                                    <span t-esc="i['bn']"/>
+                                                </td>
+                                                <t t-set="s" t-value="i['bn']"/>
+                                                <t t-if="data['event_id']">
+                                                    <td>
+                                                        <span t-esc="i['tn']"/>
+                                                    </td>
+                                                </t>
+                                                <td>
+                                                    <span t-esc="i['rn']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="i['booking_date']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="i['state']"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="i['menu_catering_total']"/>
+                                                </td>
+                                                <t t-if="data['cat_ok'] == True">
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>
+                                                            <strong>catering</strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>item</strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>quantity</strong>
+                                                        </td>
+                                                        <td>
+                                                            <strong>unit price</strong>
+                                                        </td>
+                                                        <td colspan="2">
+                                                            <strong>subtotal</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <t t-foreach="data['ids']" t-as="j">
+                                                        <t t-if="i['id'] == j['inv_welcome_id'] or i['id'] == j['inv_breakfast_id'] or i['id'] == j['inv_lunch_id'] or i['id'] == j['inv_dinner_id'] or i['id'] == j['inv_snacks_id'] or i['id'] == j['inv_drinks_id'] or i['id'] == j['inv_beverages_id']">
+                                                            <tr>
+                                                                <td></td>
+                                                                <td>
+                                                                    <span t-esc="j['reference_no']"/>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-esc="j['menu_dish_name']"/>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-esc="j['menu_dish_quantity']"/>
+                                                                </td>
+                                                                <td>
+                                                                    <span t-esc="j['menu_dish_unit_price']"/>
+                                                                </td>
+                                                                <td colspan="2">
+                                                                    <span t-esc="j['menu_dish_subtotal']"/>
+                                                                </td>
+                                                            </tr>
+                                                        </t>
+                                                    </t>
+                                                </t>
+                                            </tr>
+                                          <t t-set="total" t-value="total+i['menu_catering_total']"/>
+                                        </t>
+                                    </t>
+                                </tbody>
+                            </table>
+                            <br></br>
+                            <br></br>
+                        </div>
+                </div>
+                <div class="oe_subtotal_footer oe_right">
+                    <strong>Total:</strong>
+                    <span t-esc="total"/>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

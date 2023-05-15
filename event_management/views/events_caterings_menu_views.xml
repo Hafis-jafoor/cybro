@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="event_category_menu_action" model="ir.actions.act_window">
+        <field name="name">Event Catering Menu</field>
+        <field name="res_model">event.catering.menu</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="events_caterings_menu_views_tree" model="ir.ui.view">
+        <field name="name">event.catering.menu.tree</field>
+        <field name="model">event.catering.menu</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="menu_dish_name"/>
+                <field name="menu_category"/>
+                <field name="menu_dish_unit_price" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="events_caterings_menu_views_form" model="ir.ui.view">
+       <field name="name">event.catering.menu.tree</field>
+        <field name="model">event.catering.menu</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="menu_dish_name"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <group>
+                        <group string="Event menu Category">
+                            <field name="menu_category"/>
+                        </group>
+                        <group string="Menus Details">
+                                <field name="menu_dish_image"/>
+                                <field name="menu_dish_uom_id"/>
+                                <field name="menu_dish_unit_price"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <menuitem id="main_menu_configuration_event_category_menu" action="event_category_menu_action"
+              parent="main_menu_configuration">
+    </menuitem>
+</odoo>

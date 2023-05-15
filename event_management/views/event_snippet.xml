@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="basic_snippet" name="Latest Event Snippet">
+        <section class="container dynamic_snippet_blog">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Latest Events</h1><br></br>
+                    <div class="row" id="latest_event"/>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="external_snippets" inherit_id="website.snippets" priority="8">
+        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
+            <t t-snippet="event_management.basic_snippet"/>
+        </xpath>
+    </template>
+</odoo>

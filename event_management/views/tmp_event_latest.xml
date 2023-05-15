@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tmp_event_latest" name="latest events">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+                    <h3>Event Details</h3>
+                    <br/>
+                    <div class="container">
+                        <br/>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    <strong>Event Name:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.name"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Event Type:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.event_type_id.name"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Event Catering:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.catering_relation_id.reference_no"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Customer Name:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.partner_id.name"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Booking Date:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.booking_date"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Start Date:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.begin_date"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>End Date:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.end_date"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Status:</strong>
+                                </td>
+                                <td>
+                                    <span t-esc="event.state"/>
+                                    <br/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

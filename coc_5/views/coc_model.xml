@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="coc_model_action" model="ir.actions.act_window">
+        <field name="name">COC 5</field>
+        <field name="res_model">coc.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="tree_coc_model" model="ir.ui.view">
+        <field name="name">coc.model.tree</field>
+        <field name="model">coc.model</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="resistence"/>
+            </tree>
+        </field>
+    </record>
+    <record id="form_coc_model" model="ir.ui.view">
+        <field name="name">coc.model.form</field>
+        <field name="model">coc.model</field>
+        <field name="arch" type="xml">
+            <form>
+                <h3>
+                <field name="resistence" widget="badges"/>
+                </h3>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="main_coc_model_5" name="COC 5" sequence="11">
+        <menuitem id="sub_coc_model" action="coc_model_action" />
+    </menuitem>
+</odoo>

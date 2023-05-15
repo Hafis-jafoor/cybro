@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="event_bookings_action" model="ir.actions.act_window">
+        <field name="name">Event Booking</field>
+        <field name="res_model">event.bookings</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="events_bookings_views_tree" model="ir.ui.view">
+        <field name="name">event.bookings.tree</field>
+        <field name="model">event.bookings</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name"/>
+                <field name="event_type_id"/>
+                <field name="partner_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="events_bookings_views_form" model="ir.ui.view">
+        <field name="name">event.bookings.form</field>
+        <field name="model">event.bookings</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field string="catering" name="catering_count" invisible="1"/>
+                    <div name="button" position="inside" attrs="{'invisible': [('catering_count', '=', 1)]}">
+                    <button name="button_catering_service" states="draft,confirmed" class="oe_highlight" string="Catering Service"
+                            type="object" help="Move event booking to event catering"/>
+                    </div>
+                    <div>
+                    <button name="button_confirm" class="oe_highlight" states="draft" string="Confirm"
+                            type="object" help="Move event bookings to confirmed state" colspan="4"/>
+                    </div>
+                    <div name="button" position="inside" attrs="{'invisible': [('catering_count', '=', 0)]}">
+                    <button name="button_invoice" class="oe_highlight" states="delivered" string="Create Invoice"
+                            type="object" help="Move event bookings to invoice form"/>
+                    </div>
+                    <field name="catering_state" invisible="1"/>
+                    <div name="button" position="inside" attrs="{'invisible': [('catering_state', '!=', 'confirmed')]}">
+                        <button name="button_deliver" class="oe_highlight" states="confirmed" string="Delivery"
+                            type="object" help="Move event booking from confirmed to delivered state"/>
+                    </div>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,delivered,invoiced"/>
+                </header>
+                <sheet>
+                    <div name="button_box" position="inside" >
+                        <button class="oe_stat_button" type="object" name="get_catering" icon="fa-coffee"
+                                string="Catering Service" attrs="{'invisible': [('catering_count', '=', 0)]}">
+                        </button>
+                        <button class="oe_stat_button" type="object" name="get_payment" icon="fa-money"
+                                string="Invoice" attrs="{'invisible': [('state', 'not in', 'invoiced')]}">
+                        </button>
+                    </div>
+                    <div>
+                        <field name="payment_state" invisible="1"/>
+                        <widget name="web_ribbon" title="Paid"
+                                attrs="{'invisible': [('payment_state', '!=', 'paid')]}"/>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Event details">
+                            <field name="event_type_id"/>
+                            <field name="partner_id" widget="res_partner_many2one"
+                                   context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                   options='{"always_reload": True}'/>
+                            <field name="booking_date"/>
+                            <field name="catering_relation_id"/>
+                            <field name="invoice_id"/>
+                        </group>
+                        <group string="start and end date">
+                            <field name="begin_date"/>
+                            <field name="end_date"/>
+<!--                            <field name="purchase_order_id"/>-->
+                        </group>
+                    </group>
+                    <group>
+                        <group></group>
+                        <group string="duration">
+                            <field name="duration"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <menuitem id="main_menu_event_bookings"  action="event_bookings_action"  parent="main_menu_root" sequence="2" />
+</odoo>

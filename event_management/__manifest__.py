@@ -1,0 +1,37 @@
+{
+    'name': 'Event Management',
+    'version': '16.0.1  .0.0',
+    'sequence': 1,
+    'depends': ['base', 'mail', 'account_payment'],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+    'data': [
+        'data/event_management_data.xml',
+        'data/ir_cron.xml',
+        'data/event_sequence.xml',
+        'security/ir.model.access.csv',
+        'views/events_types_views.xml',
+        'views/event_services.xml',
+        'views/events_bookings_views.xml',
+        'views/events_caterings_views.xml',
+        'views/events_caterings_menu_views.xml',
+        'views/event_snippet.xml',
+        'views/tmp_event_latest.xml',
+        'views/website_event_menu.xml',
+        'views/online_event_booking.xml',
+        'views/website_event_confirmed.xml',
+        'wizard/event_report.xml',
+        'report/report_actions.xml',
+        'report/report_templates.xml',
+    ],
+    'assets': {
+        'web.assets_backend': [
+            'event_management/static/src/js/action_manager.js',
+        ],
+        'web.assets_frontend': [
+            'event_management/static/src/js/event_dynamic.js',
+            'event_management/static/src/js/website_booking.js',
+        ],
+    },
+}

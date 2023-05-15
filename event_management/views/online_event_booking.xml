@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="online_event_booking" name="event booking form">
+       <t t-call="website.layout">
+           <div id="wrap" class="oe_structure oe_empty">
+               <section class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                   <div class="container">
+                       <form action="/event/submit/" method="post" enctype="multipart/form-data" class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                           <br/>
+                           <h3>Event Booking form</h3>
+                           <br/>
+                           <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                           <div class="s_website_form_rows row s_col_no_bgcolor">
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Name</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                           <input id="name" type="text" class="form-control s_website_form_input" name="name" required="1" list="browse_partner">
+                                           <datalist id="browse_partner">
+                                               <t t-foreach="partners or []" t-as="partner">
+                                                   <option t-att-value="partner.name">
+                                                       <t t-esc="partner.name" />
+                                                   </option>
+                                               </t>
+                                           </datalist>
+                                           </input>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Phone</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="phone" type="tel" class="form-control s_website_form_input" name="phone" required="1"/>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Email</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="email" type="email" class="form-control s_website_form_input" name="email" required="1"/>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Event Type</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                           <select name="event_id" t-attf-class="form-control s_website_form_input" required="1">
+                                               <t t-foreach="types or []" t-as="types">
+                                                   <option t-att-value="types.id">
+                                                       <t t-esc="types.name" />
+                                                   </option>
+                                               </t>
+                                           </select>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Date</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="event_booking_date" type="date" t-att-value="date" class="form-control s_website_form_input" name="event_booking_date" required="1"/>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Begin Date</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="event_begin_date" type="date" class="form-control s_website_form_input" name="event_begin_date" required="1">
+                                       </input>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">End Date</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="event_end_date" type="date" class="form-control s_website_form_input" name="event_end_date" required="1"/>
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                                   <div class="row s_col_no_resize s_col_no_bgcolor">
+                                       <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">
+                                           <span class="s_website_form_label_content">Duration</span>
+                                           <span class="s_website_form_mark"> *</span>
+                                       </label>
+                                       <div class="col-sm">
+                                       <input id="event_duration" type="text" class="form-control s_website_form_input" name="event_end_date" required="1" disabled="disabled" />
+                                       </div>
+                                   </div>
+                               </div><br><br></br></br>
+                               <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                   <div style="width: 200px;" class="s_website_form_label"/>
+                                   <button type="submit" class="btn btn-primary alert_onclick">Submit</button>
+                               </div>
+                           </div>
+                       </form>
+                   </div>
+               </section>
+           </div>
+       </t>
+   </template>
+</odoo>
