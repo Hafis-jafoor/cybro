@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 
 
 class EventCatering(models.Model):
-    """"event catering services"""
+    """"event caterings services"""
 
     _name = "event.catering"
     _description = "event catering"
