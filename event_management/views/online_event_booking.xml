@@ -18,18 +18,20 @@
                                            <span class="s_website_form_mark"> *</span>
                                        </label>
                                        <div class="col-sm">
-                                           <input id="name" type="text" class="form-control s_website_form_input" name="name" required="1" list="browse_partner">
-                                           <datalist id="browse_partner">
-                                               <t t-foreach="partners or []" t-as="partner">
-                                                   <option t-att-value="partner.name">
-                                                       <t t-esc="partner.name" />
-                                                   </option>
-                                               </t>
-                                           </datalist>
+                                           <input id="name" type="text" class="form-control s_website_form_input" name="browse_partner" required="1" list="browse_partner">
+                                               <datalist id="browse_partner">
+                                                   <t t-foreach="partners or []" t-as="partner">
+                                                       <option t-att-value="partner.name" t-att-data-id="partner.id">
+                                                       </option>
+                                                   </t>
+                                               </datalist>
                                            </input>
                                        </div>
                                    </div>
                                </div><br><br></br></br>
+                               <div>
+                                   <input id="partner_hide" name="id" required="1" type="hidden"/>
+                               </div>
                                <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
                                    <div class="row s_col_no_resize s_col_no_bgcolor">
                                        <label class="col-form-label col-sm-auto s_website_form_label" style="width: 200px" for="studio1">

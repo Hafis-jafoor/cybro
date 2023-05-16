@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import models, fields, api, _
+from odoo import api, fields, models, _
 
 
 class EventCatering(models.Model):

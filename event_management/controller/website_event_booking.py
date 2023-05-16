@@ -1,6 +1,5 @@
-from odoo import http, fields
+from odoo import fields, http
 from odoo.http import request
-from datetime import datetime
 
 
 class WebsiteEventBooking(http.Controller):
@@ -22,10 +21,12 @@ class WebsiteEventBooking(http.Controller):
     def event_booking_form(self, **kw):
         """"creation of bookings from website"""
 
-        partner_name = kw['name']
-        partner = request.env['res.partner'].search([('name', '=', partner_name)])
-        print('sa', partner)
-        if not partner:
+        partner_name = kw['id']
+        num = partner_name.isnumeric()
+        if num:
+            partner = request.env['res.partner'].browse(int(partner_name))
+            partner_name = partner.name
+        else:
             partner = request.env['res.partner'].create({
                 'name': partner_name,
                 'phone': kw['phone'],
@@ -34,7 +35,7 @@ class WebsiteEventBooking(http.Controller):
         event_name = request.env['event.types'].browse(int(kw['event_id'])).name
         partner_id = partner.id
         first_name = partner_name.split()[0]
-        if kw['event_id'] and kw['name'] and kw['event_begin_date'] and kw['event_end_date']:
+        if kw['event_id'] and kw['id'] and kw['event_begin_date'] and kw['event_end_date']:
             value = f"{event_name} : {first_name} / {kw['event_begin_date']} : {kw['event_end_date']}"
         create_booking = {
             'name': value,
@@ -48,3 +49,13 @@ class WebsiteEventBooking(http.Controller):
 
         return request.render("event_management.website_event_confirmed")
 
+    @http.route(['/event_relate'], type="json", auth="public")
+    def event_relate(self, **kw):
+        """"related fields automated"""
+
+        var = kw['key']
+        partner = request.env['res.partner'].browse(int(var))
+        phone = partner.phone
+        email = partner.email
+        lan = {'phone': phone, 'email': email}
+        return lan

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from odoo import models, fields, api, _
+from odoo import api, fields, models
 from datetime import datetime
 from odoo.exceptions import ValidationError
 
@@ -12,7 +12,6 @@ class EventBookings(models.Model):
     _name = "event.bookings"
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = "event bookings"
-    _rec_name = "name"
 
     name = fields.Char(compute='_compute_name', readonly="true", default="new", store=True)
     event_type_id = fields.Many2one('event.types', string='Event Type', required=True)
