@@ -55,7 +55,7 @@ class EventCatering(models.Model):
 
     @api.depends('welcome_drink_ids', 'welcome_drink_ok')
     def _compute_welcome_amount(self):
-        """"Compute the total of  welcome drink lines"""
+        """"Compute the total of  welcome drinks lines"""
 
         for record in self:
             record.menu_catering_welcome_total = 0
