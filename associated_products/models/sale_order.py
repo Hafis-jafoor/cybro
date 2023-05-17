@@ -37,5 +37,5 @@ class SaleOrder(models.Model):
                 val = record.partner_id.associative_products.ids
                 # if val:
                 for k in val:
-                        record.order_line._origin.search(
-                            [('product_id', '=', k), ('order_id', '=', self._origin.id)]).unlink()
+                    record.order_line._origin.search(
+                        [('product_id', '=', k), ('order_id', '=', self._origin.id)]).unlink()

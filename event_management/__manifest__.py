@@ -1,6 +1,6 @@
 {
     'name': 'Event Management',
-    'version': '16.0.1  .0.0',
+    'version': '16.0.1.0.0',
     'sequence': 1,
     'depends': ['base', 'mail', 'account_payment'],
     'installable': True,
